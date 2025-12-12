@@ -1,0 +1,60 @@
+<mvc:View
+    controllerName="com.sap.dashboard.controller.GoodsReceipt"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+    <Page
+        id="grPage"
+        title="Goods Receipt"
+        showNavButton="true"
+        navButtonPress="onNavBack">
+        <content>
+            <Table
+                id="grTable"
+                items="{/GoodsReceipt}"
+                growing="true"
+                growingThreshold="20"
+                mode="SingleSelectMaster">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="Goods Receipts" level="H2"/>
+                        <ToolbarSpacer/>
+                        <SearchField
+                            width="50%"
+                            search="onSearch"
+                            placeholder="Search receipts..."/>
+                        <Button
+                            icon="sap-icon://add"
+                            text="Create GR"
+                            press="onCreateGR"
+                            type="Emphasized"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column><Text text="GR Number" /></Column>
+                    <Column><Text text="PO Number" /></Column>
+                    <Column><Text text="Receipt Date" /></Column>
+                    <Column><Text text="Quantity" /></Column>
+                    <Column><Text text="Status" /></Column>
+                    <Column><Text text="Overdue" /></Column>
+                    <Column><Text text="Remarks" /></Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Navigation" press="onGRSelect">
+                        <cells>
+                            <Text text="{grNumber}" />
+                            <Text text="{purchaseOrder/poNumber}" />
+                            <Text text="{path: 'receiptDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd/MM/yyyy'}}" />
+                            <Text text="{quantity}" />
+                            <ObjectStatus text="{status}" state="Success" />
+                            <ObjectStatus 
+                                text="{= ${isOverdue} ? 'Yes' : 'No'}" 
+                                state="{= ${isOverdue} ? 'Error' : 'Success'}" />
+                            <Text text="{remarks}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

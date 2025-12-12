@@ -1,0 +1,6 @@
+ID,vendorCode,vendorName,country,city,email,phone,status,createdAt,createdBy
+770e8400-e29b-41d4-a716-446655440900,VND001,Global Metals Pvt Ltd,India,Mumbai,contact@globalmetals.com,+91-9823011122,Active,2025-01-05T10:12:40Z,Admin
+770e8400-e29b-41d4-a716-446655440901,VND002,Blue Ocean Chemicals,USA,Houston,info@blueoceanchem.com,+1-2813305588,Active,2025-01-18T14:05:30Z,Admin
+770e8400-e29b-41d4-a716-446655440902,VND003,SteelWorld Industries,Germany,Berlin,support@steelworld.de,+49-3022223344,Inactive,2025-02-02T09:55:00Z,ProcurementMgr
+770e8400-e29b-41d4-a716-446655440903,VND004,PackWell Solutions,India,Pune,service@packwell.in,+91-7878665544,Active,2025-02-20T11:22:17Z,Admin
+770e8400-e29b-41d4-a716-446655440904,VND005,Techno Lubricants Ltd,UAE,Dubai,contact@technolube.ae,+971-501223344,Active,2025-03-01T08:18:52Z,Admin

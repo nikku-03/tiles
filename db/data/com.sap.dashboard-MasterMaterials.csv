@@ -1,0 +1,6 @@
+ID,materialCode,materialName,materialType,baseUnit,materialGroup,price,currency,status,createdAt
+a10e8400-e29b-41d4-a716-446655441000,MAT-001,Steel Rod 10mm,Raw Material,KG,Metals,120.50,INR,Active,2025-01-05T10:22:10Z
+a10e8400-e29b-41d4-a716-446655441001,MAT-002,Cement Grade-A,Raw Material,BAG,Construction,350.00,INR,Active,2025-01-20T14:12:33Z
+a10e8400-e29b-41d4-a716-446655441002,MAT-003,Copper Wire 2mm,Raw Material,KG,Metals,780.25,INR,Inactive,2025-02-02T09:44:55Z
+a10e8400-e29b-41d4-a716-446655441003,MAT-004,Packaging Box Medium,Packaging,PCS,Packaging,18.00,INR,Active,2025-02-18T11:20:45Z
+a10e8400-e29b-41d4-a716-446655441004,MAT-005,Hydraulic Oil Grade-H7,Consumable,LTR,Chemicals,420.00,INR,Active,2025-03-01T08:15:12Z

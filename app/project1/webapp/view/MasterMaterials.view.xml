@@ -1,0 +1,58 @@
+<mvc:View
+    controllerName="com.sap.dashboard.controller.MasterMaterials"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+    <Page
+        id="materialsPage"
+        title="Master Materials"
+        showNavButton="true"
+        navButtonPress="onNavBack">
+        <content>
+            <Table
+                id="materialsTable"
+                items="{/MasterMaterials}"
+                growing="true"
+                growingThreshold="20"
+                mode="SingleSelectMaster">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="Materials" level="H2"/>
+                        <ToolbarSpacer/>
+                        <SearchField
+                            width="50%"
+                            search="onSearch"
+                            placeholder="Search materials..."/>
+                        <Button
+                            icon="sap-icon://add"
+                            text="Add Material"
+                            press="onAddMaterial"
+                            type="Emphasized"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column><Text text="Material Code" /></Column>
+                    <Column><Text text="Material Name" /></Column>
+                    <Column><Text text="Type" /></Column>
+                    <Column><Text text="Base Unit" /></Column>
+                    <Column><Text text="Material Group" /></Column>
+                    <Column><Text text="Price" /></Column>
+                    <Column><Text text="Status" /></Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Navigation" press="onMaterialSelect">
+                        <cells>
+                            <Text text="{materialCode}" />
+                            <Text text="{materialName}" />
+                            <Text text="{materialType}" />
+                            <Text text="{baseUnit}" />
+                            <Text text="{materialGroup}" />
+                            <Text text="{price} {currency}" />
+                            <ObjectStatus text="{status}" state="{= ${status} === 'Active' ? 'Success' : 'Error'}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

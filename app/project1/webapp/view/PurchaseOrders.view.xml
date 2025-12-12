@@ -1,0 +1,58 @@
+<mvc:View
+    controllerName="com.sap.dashboard.controller.PurchaseOrders"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+    <Page
+        id="poPage"
+        title="Purchase Orders"
+        showNavButton="true"
+        navButtonPress="onNavBack">
+        <content>
+            <Table
+                id="poTable"
+                items="{/PurchaseOrders}"
+                growing="true"
+                growingThreshold="20"
+                mode="SingleSelectMaster">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="Purchase Orders" level="H2"/>
+                        <ToolbarSpacer/>
+                        <SearchField
+                            width="50%"
+                            search="onSearch"
+                            placeholder="Search orders..."/>
+                        <Button
+                            icon="sap-icon://add"
+                            text="Create PO"
+                            press="onCreatePO"
+                            type="Emphasized"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column><Text text="PO Number" /></Column>
+                    <Column><Text text="Vendor" /></Column>
+                    <Column><Text text="Order Date" /></Column>
+                    <Column><Text text="Delivery Date" /></Column>
+                    <Column><Text text="Total Amount" /></Column>
+                    <Column><Text text="Status" /></Column>
+                    <Column><Text text="Approval Status" /></Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Navigation" press="onPOSelect">
+                        <cells>
+                            <Text text="{poNumber}" />
+                            <Text text="{vendor/vendorName}" />
+                            <Text text="{path: 'orderDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd/MM/yyyy'}}" />
+                            <Text text="{path: 'deliveryDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd/MM/yyyy'}}" />
+                            <Text text="{totalAmount} {currency}" />
+                            <ObjectStatus text="{status}" state="{= ${status} === 'Approved' ? 'Success' : 'Warning'}" />
+                            <ObjectStatus text="{approvalStatus}" state="{= ${approvalStatus} === 'Approved' ? 'Success' : 'Warning'}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

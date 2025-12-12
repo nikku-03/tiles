@@ -1,0 +1,129 @@
+<mvc:View
+    controllerName="com.sap.dashboard.controller.Audit"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+    <Page
+        id="auditPage"
+        title="Audit & Security"
+        showNavButton="true"
+        navButtonPress="onNavBack">
+        <content>
+            <IconTabBar id="auditTabBar" select="onTabSelect">
+                <items>
+                    <IconTabFilter text="Audit Reports" key="audit">
+                        <Table
+                            id="auditTable"
+                            items="{/AuditReport}"
+                            growing="true"
+                            growingThreshold="20">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <Title text="Audit Reports" level="H2"/>
+                                    <ToolbarSpacer/>
+                                    <Button
+                                        icon="sap-icon://add"
+                                        text="New Audit"
+                                        press="onNewAudit"
+                                        type="Emphasized"/>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column><Text text="Audit ID" /></Column>
+                                <Column><Text text="Audit Type" /></Column>
+                                <Column><Text text="Audit Date" /></Column>
+                                <Column><Text text="Auditor" /></Column>
+                                <Column><Text text="Status" /></Column>
+                                <Column><Text text="Last Run" /></Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem type="Navigation" press="onAuditSelect">
+                                    <cells>
+                                        <Text text="{auditID}" />
+                                        <Text text="{auditType}" />
+                                        <Text text="{path: 'auditDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd/MM/yyyy'}}" />
+                                        <Text text="{auditor}" />
+                                        <ObjectStatus text="{status}" state="{= ${status} === 'Completed' ? 'Success' : 'Warning'}" />
+                                        <Text text="{path: 'lastRun', type: 'sap.ui.model.type.DateTime', formatOptions: {pattern: 'dd/MM/yyyy HH:mm'}}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </IconTabFilter>
+                    
+                    <IconTabFilter text="Error Logs" key="errors">
+                        <Table
+                            id="errorTable"
+                            items="{/ErrorLogs}"
+                            growing="true"
+                            growingThreshold="20">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <Title text="Error Logs" level="H2"/>
+                                    <ToolbarSpacer/>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column><Text text="Error Code" /></Column>
+                                <Column><Text text="Error Message" /></Column>
+                                <Column><Text text="Severity" /></Column>
+                                <Column><Text text="Module" /></Column>
+                                <Column><Text text="Occurred At" /></Column>
+                                <Column><Text text="Requires Attention" /></Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{errorCode}" />
+                                        <Text text="{errorMessage}" />
+                                        <ObjectStatus text="{severity}" state="{= ${severity} === 'High' ? 'Error' : 'Warning'}" />
+                                        <Text text="{module}" />
+                                        <Text text="{path: 'occurredAt', type: 'sap.ui.model.type.DateTime', formatOptions: {pattern: 'dd/MM/yyyy HH:mm'}}" />
+                                        <ObjectStatus 
+                                            text="{= ${requiresAttention} ? 'Yes' : 'No'}" 
+                                            state="{= ${requiresAttention} ? 'Error' : 'Success'}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </IconTabFilter>
+                    
+                    <IconTabFilter text="Security Settings" key="security">
+                        <Table
+                            id="securityTable"
+                            items="{/SecuritySettings}"
+                            growing="true"
+                            growingThreshold="20">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <Title text="Security Settings" level="H2"/>
+                                    <ToolbarSpacer/>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column><Text text="Setting Name" /></Column>
+                                <Column><Text text="Setting Value" /></Column>
+                                <Column><Text text="Active" /></Column>
+                                <Column><Text text="Last Modified" /></Column>
+                                <Column><Text text="Modified By" /></Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{settingName}" />
+                                        <Text text="{settingValue}" />
+                                        <ObjectStatus 
+                                            text="{= ${isActive} ? 'Active' : 'Inactive'}" 
+                                            state="{= ${isActive} ? 'Success' : 'Error'}" />
+                                        <Text text="{path: 'lastModified', type: 'sap.ui.model.type.DateTime', formatOptions: {pattern: 'dd/MM/yyyy HH:mm'}}" />
+                                        <Text text="{modifiedBy}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
+    </Page>
+</mvc:View>

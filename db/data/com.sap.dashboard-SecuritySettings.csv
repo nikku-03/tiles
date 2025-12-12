@@ -1,0 +1,6 @@
+ID,settingName,settingValue,isActive,lastModified,modifiedBy
+d40e8400-e29b-41d4-a716-446655444000,PasswordPolicy,"MinLength=10;RequireSpecial=true;Lockout=3",true,2025-01-08T11:22:40Z,SecurityAdmin
+d40e8400-e29b-41d4-a716-446655444001,TwoFactorAuth,Enabled,true,2025-01-25T09:10:12Z,SystemAdmin
+d40e8400-e29b-41d4-a716-446655444002,APIRateLimit,"1000 requests/min",true,2025-02-05T14:55:30Z,DevOpsTeam
+d40e8400-e29b-41d4-a716-446655444003,DataRetentionPeriod,"365 days",false,2025-02-28T08:44:20Z,AuditTeam
+d40e8400-e29b-41d4-a716-446655444004,SessionTimeout,"30 minutes",true,2025-03-12T16:20:50Z,ITSupport

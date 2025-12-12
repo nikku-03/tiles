@@ -1,0 +1,6 @@
+ID,errorCode,errorMessage,severity,occurredAt,module,requiresAttention,resolvedAt,resolvedBy
+770e8400-e29b-41d4-a716-446655440100,ERR-500,"Internal server error during PO creation",High,2025-01-12T10:22:45Z,PurchaseOrders,true,2025-01-12T11:05:30Z,Admin User
+770e8400-e29b-41d4-a716-446655440101,ERR-404,"Requested material not found",Medium,2025-02-05T09:15:12Z,MasterMaterials,false,, 
+770e8400-e29b-41d4-a716-446655440102,ERR-403,"Unauthorized access attempt detected",Critical,2025-02-15T14:50:33Z,Security,true,2025-02-15T15:10:00Z,SecurityBot
+770e8400-e29b-41d4-a716-446655440103,ERR-408,"Request timeout while loading vendor list",Low,2025-03-01T08:45:00Z,VendorMaster,false,, 
+770e8400-e29b-41d4-a716-446655440104,ERR-409,"Duplicate invoice number detected",High,2025-03-18T12:22:10Z,InvoiceReport,true,2025-03-18T12:45:55Z,Finance Admin

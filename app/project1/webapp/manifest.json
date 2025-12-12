@@ -1,0 +1,113 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "com.sap.dashboard",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "supportedLocales": ["", "en"],
+    "fallbackLocale": "en",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "dataSources": {
+      "mainService": {
+        "uri": "/dashboard/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "sap-icon://home",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    },
+    "resourceRoots": {
+      "project1": "./"
+    },
+    "flexEnabled": false,
+    "preloadBundles": []
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "rootView": {
+      "viewName": "com.sap.dashboard.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    },
+    "dependencies": {
+      "minUI5Version": "1.120.0",
+      "libs": {
+        "sap.ui.core": {},
+        "sap.m": {},
+        "sap.ui.layout": {},
+        "sap.f": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "viewPath": "com.sap.dashboard.view",
+        "controlId": "app",
+        "controlAggregation": "pages",
+        "async": true
+      },
+      "routes": [
+        { "pattern": "", "name": "Dashboard", "target": "Dashboard" },
+        { "pattern": "vendors", "name": "Vendors", "target": "Vendors" },
+        { "pattern": "materials", "name": "Materials", "target": "Materials" },
+        { "pattern": "purchaseOrders", "name": "PurchaseOrders", "target": "PurchaseOrders" },
+        { "pattern": "goodsReceipt", "name": "GoodsReceipt", "target": "GoodsReceipt" },
+        { "pattern": "invoices", "name": "Invoices", "target": "Invoices" },
+        { "pattern": "audit", "name": "Audit", "target": "Audit" }
+      ],
+      "targets": {
+        "Dashboard": { "viewName": "Dashboard", "viewLevel": 1 },
+        "Vendors": { "viewName": "VendorMaster", "viewLevel": 2 },
+        "Materials": { "viewName": "MasterMaterials", "viewLevel": 2 },
+        "PurchaseOrders": { "viewName": "PurchaseOrders", "viewLevel": 2 },
+        "GoodsReceipt": { "viewName": "GoodsReceipt", "viewLevel": 2 },
+        "Invoices": { "viewName": "Invoices", "viewLevel": 2 },
+        "Audit": { "viewName": "Audit", "viewLevel": 2 }
+      }
+    }
+  }
+}

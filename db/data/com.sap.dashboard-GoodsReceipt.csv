@@ -1,0 +1,6 @@
+ID,grNumber,purchaseOrder_ID,receiptDate,status,isOverdue,quantity,remarks
+880e8400-e29b-41d4-a716-446655440200,GR-2025-001,550e8400-e29b-41d4-a716-446655440010,2025-01-20,Received,false,120,"Goods received in good condition"
+880e8400-e29b-41d4-a716-446655440201,GR-2025-002,550e8400-e29b-41d4-a716-446655440011,2025-02-10,Delayed,true,80,"Delayed due to transport issues"
+880e8400-e29b-41d4-a716-446655440202,GR-2025-003,550e8400-e29b-41d4-a716-446655440012,2025-02-28,Received,false,200,"No issues found"
+880e8400-e29b-41d4-a716-446655440203,GR-2025-004,550e8400-e29b-41d4-a716-446655440013,2025-03-05,Partially Received,true,50,"Remaining items expected next week"
+880e8400-e29b-41d4-a716-446655440204,GR-2025-005,550e8400-e29b-41d4-a716-446655440014,2025-03-20,Received,false,150,"Checked and verified by warehouse"

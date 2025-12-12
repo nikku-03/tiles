@@ -1,0 +1,58 @@
+<mvc:View
+    controllerName="com.sap.dashboard.controller.VendorMaster"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+    <Page
+        id="vendorPage"
+        title="Vendor Master"
+        showNavButton="true"
+        navButtonPress="onNavBack">
+        <content>
+            <Table
+                id="vendorTable"
+                items="{/VendorMaster}"
+                growing="true"
+                growingThreshold="20"
+                mode="SingleSelectMaster">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="Vendors" level="H2"/>
+                        <ToolbarSpacer/>
+                        <SearchField
+                            width="50%"
+                            search="onSearch"
+                            placeholder="Search vendors..."/>
+                        <Button
+                            icon="sap-icon://add"
+                            text="Add Vendor"
+                            press="onAddVendor"
+                            type="Emphasized"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column><Text text="Vendor Code" /></Column>
+                    <Column><Text text="Vendor Name" /></Column>
+                    <Column><Text text="Country" /></Column>
+                    <Column><Text text="City" /></Column>
+                    <Column><Text text="Email" /></Column>
+                    <Column><Text text="Phone" /></Column>
+                    <Column><Text text="Status" /></Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Navigation" press="onVendorSelect">
+                        <cells>
+                            <Text text="{vendorCode}" />
+                            <Text text="{vendorName}" />
+                            <Text text="{country}" />
+                            <Text text="{city}" />
+                            <Text text="{email}" />
+                            <Text text="{phone}" />
+                            <ObjectStatus text="{status}" state="{= ${status} === 'Active' ? 'Success' : 'Error'}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

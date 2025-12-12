@@ -1,0 +1,83 @@
+/* Enter your custom styles here */
+
+/* Dashboard Tile Styling */
+.tileLayout {
+    height: 12rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tileLayout:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.tileLayout .sapMGT {
+    border-radius: 0.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.tileLayout .sapMTileCnt {
+    color: white;
+}
+
+.tileLayout .sapMNI {
+    color: white;
+}
+
+/* Dashboard Page Styling */
+#dashboardPage {
+    background-color: #f5f5f5;
+}
+
+/* Table Header Styling */
+.sapMListTblHeaderCell {
+    background-color: #667eea;
+    color: white;
+    font-weight: bold;
+}
+
+/* Panel Styling */
+.sapMPanel {
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Grid */
+.sapUiRespGrid {
+    padding: 1rem;
+}
+
+/* Tab Bar Styling */
+.sapMITBHead {
+    background-color: #667eea;
+}
+
+.sapMITBFilter {
+    color: white;
+}
+
+/* Emphasized Button Styling */
+.sapMBtn.sapMBtnEmphasized {
+    background-color: #667eea;
+    border-color: #667eea;
+}
+
+.sapMBtn.sapMBtnEmphasized:hover {
+    background-color: #5568d3;
+    border-color: #5568d3;
+}
+
+/* Status Colors */
+.sapMObjStatusSuccess {
+    color: #2da750;
+}
+
+.sapMObjStatusError {
+    color: #d32f2f;
+}
+
+.sapMObjStatusWarning {
+    color: #f57c00;
+}

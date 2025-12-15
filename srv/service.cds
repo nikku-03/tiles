@@ -1,6 +1,6 @@
 using { com.sap.dashboard as db } from '../db/schema';
 
-service DashboardService @(path: '/dashboard') {
+service DashboardService @(path: '/po') {
     
     entity VendorMaster as projection on db.VendorMaster;
     entity MasterMaterials as projection on db.MasterMaterials;
@@ -12,7 +12,5 @@ service DashboardService @(path: '/dashboard') {
     entity AuditReport as projection on db.AuditReport;
     entity ErrorLogs as projection on db.ErrorLogs;
     entity SecuritySettings as projection on db.SecuritySettings;
-    
-    
-   
+    function getnorthwind() returns String ;
 }

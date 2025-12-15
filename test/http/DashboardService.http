@@ -1,0 +1,567 @@
+@server=http://localhost:4004
+@username=alice
+@password=
+
+
+### VendorMaster
+# @name VendorMaster_GET
+GET {{server}}/dashboard/VendorMaster
+Authorization: Basic {{username}}:{{password}}
+
+
+### VendorMaster
+# @name VendorMaster_POST
+POST {{server}}/dashboard/VendorMaster
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "48725953-612d-4220-9cdf-53bd0d83e258",
+  "vendorCode": "de-4872595",
+  "vendorName": "vendorName-4872595",
+  "country": "country-4872595",
+  "city": "city-4872595",
+  "email": "email-4872595",
+  "phone": "phone-4872595",
+  "status": "status-4872595",
+  "createdAt": "2010-03-25T00:00:00.000Z",
+  "createdBy": "createdBy-4872595"
+}
+
+
+### VendorMaster
+# @name VendorMaster_PATCH
+PATCH {{server}}/dashboard/VendorMaster/48725953-612d-4220-9cdf-53bd0d83e258
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "48725953-612d-4220-9cdf-53bd0d83e258",
+  "vendorCode": "de-4872595",
+  "vendorName": "vendorName-4872595",
+  "country": "country-4872595",
+  "city": "city-4872595",
+  "email": "email-4872595",
+  "phone": "phone-4872595",
+  "status": "status-4872595",
+  "createdAt": "2010-03-25T00:00:00.000Z",
+  "createdBy": "createdBy-4872595"
+}
+
+
+### VendorMaster
+# @name VendorMaster_DELETE
+DELETE {{server}}/dashboard/VendorMaster/48725953-612d-4220-9cdf-53bd0d83e258
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### MasterMaterials
+# @name MasterMaterials_GET
+GET {{server}}/dashboard/MasterMaterials
+Authorization: Basic {{username}}:{{password}}
+
+
+### MasterMaterials
+# @name MasterMaterials_POST
+POST {{server}}/dashboard/MasterMaterials
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "23935412-746e-49ec-899d-90d2186f8372",
+  "materialCode": "aterialCode-23935412",
+  "materialName": "materialName-23935412",
+  "materialType": "materialType-23935412",
+  "baseUnit": "t-23935412",
+  "materialGroup": "materialGroup-23935412",
+  "price": 82434191.78,
+  "currency": "35412",
+  "status": "status-23935412",
+  "createdAt": "2014-01-01T00:00:00.000Z"
+}
+
+
+### MasterMaterials
+# @name MasterMaterials_PATCH
+PATCH {{server}}/dashboard/MasterMaterials/23935412-746e-49ec-899d-90d2186f8372
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "23935412-746e-49ec-899d-90d2186f8372",
+  "materialCode": "aterialCode-23935412",
+  "materialName": "materialName-23935412",
+  "materialType": "materialType-23935412",
+  "baseUnit": "t-23935412",
+  "materialGroup": "materialGroup-23935412",
+  "price": 82434191.78,
+  "currency": "35412",
+  "status": "status-23935412",
+  "createdAt": "2014-01-01T00:00:00.000Z"
+}
+
+
+### MasterMaterials
+# @name MasterMaterials_DELETE
+DELETE {{server}}/dashboard/MasterMaterials/23935412-746e-49ec-899d-90d2186f8372
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### PurchaseOrders
+# @name PurchaseOrders_GET
+GET {{server}}/dashboard/PurchaseOrders
+Authorization: Basic {{username}}:{{password}}
+
+
+### PurchaseOrders
+# @name PurchaseOrders_POST
+POST {{server}}/dashboard/PurchaseOrders
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "100",
+  "poNumber": "poNumber-20939776",
+  "vendor": {
+    "ID": "48725953-612d-4220-9cdf-53bd0d83e258"
+  },
+  "orderDate": "2004-04-06",
+  "deliveryDate": "2016-05-29",
+  "totalAmount": 7482268139815.59,
+  "currency": "39776",
+  "status": "status-20939776",
+  "approvalStatus": "approvalStatus-20939776",
+  "items": [
+    {
+      "ID": "11368698-e0fd-4e52-9a4b-c5bb0d445863",
+      "material": {
+        "ID": "23935412-746e-49ec-899d-90d2186f8372"
+      },
+      "quantity": 62278790.78,
+      "unitPrice": 47121115.29,
+      "totalPrice": 3418053969256.49,
+      "deliveryDate": "2012-05-05"
+    },
+    {
+      "ID": "11368699-162e-4d80-8ea9-cf09331ce9f9",
+      "material": {
+        "ID": "23935412-746e-49ec-899d-90d2186f8372"
+      },
+      "quantity": 32499125.05,
+      "unitPrice": 34089535.83,
+      "totalPrice": 2185837913476.99,
+      "deliveryDate": "2004-05-02"
+    }
+  ]
+}
+
+
+### PurchaseOrders
+# @name PurchaseOrders_PATCH
+PATCH {{server}}/dashboard/PurchaseOrders/20939776-745a-4634-9e3a-33b06575b84e
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "20939776-745a-4634-9e3a-33b06575b84e",
+  "poNumber": "poNumber-20939776",
+  "vendor": {
+    "ID": "48725953-612d-4220-9cdf-53bd0d83e258"
+  },
+  "orderDate": "2004-04-06",
+  "deliveryDate": "2016-05-29",
+  "totalAmount": 7482268139815.59,
+  "currency": "39776",
+  "status": "status-20939776",
+  "approvalStatus": "approvalStatus-20939776",
+  "items": [
+    {
+      "ID": "11368698-e0fd-4e52-9a4b-c5bb0d445863",
+      "material": {
+        "ID": "23935412-746e-49ec-899d-90d2186f8372"
+      },
+      "quantity": 62278790.78,
+      "unitPrice": 47121115.29,
+      "totalPrice": 3418053969256.49,
+      "deliveryDate": "2012-05-05"
+    },
+    {
+      "ID": "11368699-162e-4d80-8ea9-cf09331ce9f9",
+      "material": {
+        "ID": "23935412-746e-49ec-899d-90d2186f8372"
+      },
+      "quantity": 32499125.05,
+      "unitPrice": 34089535.83,
+      "totalPrice": 2185837913476.99,
+      "deliveryDate": "2004-05-02"
+    }
+  ]
+}
+
+
+### PurchaseOrders
+# @name PurchaseOrders_DELETE
+DELETE {{server}}/dashboard/PurchaseOrders/20939776-745a-4634-9e3a-33b06575b84e
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### POItems
+# @name POItems_GET
+GET {{server}}/dashboard/POItems
+Authorization: Basic {{username}}:{{password}}
+
+
+### POItems
+# @name POItems_POST
+POST {{server}}/dashboard/POItems
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "11368698-e0fd-4e52-9a4b-c5bb0d445863",
+  "material": {
+    "ID": "23935412-746e-49ec-899d-90d2186f8372"
+  },
+  "quantity": 62278790.78,
+  "unitPrice": 47121115.29,
+  "totalPrice": 3418053969256.49,
+  "deliveryDate": "2012-05-05"
+}
+
+
+### POItems
+# @name POItems_PATCH
+PATCH {{server}}/dashboard/POItems/11368698-e0fd-4e52-9a4b-c5bb0d445863
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "11368698-e0fd-4e52-9a4b-c5bb0d445863",
+  "material": {
+    "ID": "23935412-746e-49ec-899d-90d2186f8372"
+  },
+  "quantity": 62278790.78,
+  "unitPrice": 47121115.29,
+  "totalPrice": 3418053969256.49,
+  "deliveryDate": "2012-05-05"
+}
+
+
+### POItems
+# @name POItems_DELETE
+DELETE {{server}}/dashboard/POItems/11368698-e0fd-4e52-9a4b-c5bb0d445863
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### GoodsReceipt
+# @name GoodsReceipt_GET
+GET {{server}}/dashboard/GoodsReceipt
+Authorization: Basic {{username}}:{{password}}
+
+
+### GoodsReceipt
+# @name GoodsReceipt_POST
+POST {{server}}/dashboard/GoodsReceipt
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "17415763-02a7-4cb1-b168-f5b6c0f1871a",
+  "grNumber": "grNumber-17415763",
+  "purchaseOrder": {
+    "ID": "20939776-745a-4634-9e3a-33b06575b84e"
+  },
+  "receiptDate": "2001-04-30",
+  "status": "status-17415763",
+  "isOverdue": false,
+  "quantity": 47801090.9,
+  "remarks": "remarks-17415763"
+}
+
+
+### GoodsReceipt
+# @name GoodsReceipt_PATCH
+PATCH {{server}}/dashboard/GoodsReceipt/17415763-02a7-4cb1-b168-f5b6c0f1871a
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "17415763-02a7-4cb1-b168-f5b6c0f1871a",
+  "grNumber": "grNumber-17415763",
+  "purchaseOrder": {
+    "ID": "20939776-745a-4634-9e3a-33b06575b84e"
+  },
+  "receiptDate": "2001-04-30",
+  "status": "status-17415763",
+  "isOverdue": false,
+  "quantity": 47801090.9,
+  "remarks": "remarks-17415763"
+}
+
+
+### GoodsReceipt
+# @name GoodsReceipt_DELETE
+DELETE {{server}}/dashboard/GoodsReceipt/17415763-02a7-4cb1-b168-f5b6c0f1871a
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### InvoiceReport
+# @name InvoiceReport_GET
+GET {{server}}/dashboard/InvoiceReport
+Authorization: Basic {{username}}:{{password}}
+
+
+### InvoiceReport
+# @name InvoiceReport_POST
+POST {{server}}/dashboard/InvoiceReport
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "22779226-bfbf-4bd0-aac9-9632e9f59473",
+  "invoiceNumber": "voiceNumber-22779226",
+  "purchaseOrder": {
+    "ID": "20939776-745a-4634-9e3a-33b06575b84e"
+  },
+  "vendor": {
+    "ID": "48725953-612d-4220-9cdf-53bd0d83e258"
+  },
+  "invoiceDate": "2015-04-12",
+  "dueDate": "2022-02-06",
+  "totalAmount": 1754485804378.12,
+  "currency": "79226",
+  "status": "status-22779226",
+  "verificationStatus": "verificationStatus-22779226",
+  "paymentStatus": "paymentStatus-22779226"
+}
+
+
+### InvoiceReport
+# @name InvoiceReport_PATCH
+PATCH {{server}}/dashboard/InvoiceReport/22779226-bfbf-4bd0-aac9-9632e9f59473
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "22779226-bfbf-4bd0-aac9-9632e9f59473",
+  "invoiceNumber": "voiceNumber-22779226",
+  "purchaseOrder": {
+    "ID": "20939776-745a-4634-9e3a-33b06575b84e"
+  },
+  "vendor": {
+    "ID": "48725953-612d-4220-9cdf-53bd0d83e258"
+  },
+  "invoiceDate": "2015-04-12",
+  "dueDate": "2022-02-06",
+  "totalAmount": 1754485804378.12,
+  "currency": "79226",
+  "status": "status-22779226",
+  "verificationStatus": "verificationStatus-22779226",
+  "paymentStatus": "paymentStatus-22779226"
+}
+
+
+### InvoiceReport
+# @name InvoiceReport_DELETE
+DELETE {{server}}/dashboard/InvoiceReport/22779226-bfbf-4bd0-aac9-9632e9f59473
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### InvoicePrinting
+# @name InvoicePrinting_GET
+GET {{server}}/dashboard/InvoicePrinting
+Authorization: Basic {{username}}:{{password}}
+
+
+### InvoicePrinting
+# @name InvoicePrinting_POST
+POST {{server}}/dashboard/InvoicePrinting
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "15207884-f48b-45a8-bafe-36d7dcc88019",
+  "printID": "printID-15207884",
+  "invoice": {
+    "ID": "22779226-bfbf-4bd0-aac9-9632e9f59473"
+  },
+  "printDate": "2022-10-10T00:00:00.000Z",
+  "printedBy": "printedBy-15207884",
+  "copies": 86
+}
+
+
+### InvoicePrinting
+# @name InvoicePrinting_PATCH
+PATCH {{server}}/dashboard/InvoicePrinting/15207884-f48b-45a8-bafe-36d7dcc88019
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "15207884-f48b-45a8-bafe-36d7dcc88019",
+  "printID": "printID-15207884",
+  "invoice": {
+    "ID": "22779226-bfbf-4bd0-aac9-9632e9f59473"
+  },
+  "printDate": "2022-10-10T00:00:00.000Z",
+  "printedBy": "printedBy-15207884",
+  "copies": 86
+}
+
+
+### InvoicePrinting
+# @name InvoicePrinting_DELETE
+DELETE {{server}}/dashboard/InvoicePrinting/15207884-f48b-45a8-bafe-36d7dcc88019
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### AuditReport
+# @name AuditReport_GET
+GET {{server}}/dashboard/AuditReport
+Authorization: Basic {{username}}:{{password}}
+
+
+### AuditReport
+# @name AuditReport_POST
+POST {{server}}/dashboard/AuditReport
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "4381798c-3653-4e54-9ffb-32f40c084caa",
+  "auditID": "auditID-438179",
+  "auditType": "auditType-438179",
+  "auditDate": "2022-02-17",
+  "auditor": "auditor-438179",
+  "findings": "findings-438179",
+  "status": "status-438179",
+  "lastRun": "2012-12-27T00:00:00.000Z"
+}
+
+
+### AuditReport
+# @name AuditReport_PATCH
+PATCH {{server}}/dashboard/AuditReport/4381798c-3653-4e54-9ffb-32f40c084caa
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "4381798c-3653-4e54-9ffb-32f40c084caa",
+  "auditID": "auditID-438179",
+  "auditType": "auditType-438179",
+  "auditDate": "2022-02-17",
+  "auditor": "auditor-438179",
+  "findings": "findings-438179",
+  "status": "status-438179",
+  "lastRun": "2012-12-27T00:00:00.000Z"
+}
+
+
+### AuditReport
+# @name AuditReport_DELETE
+DELETE {{server}}/dashboard/AuditReport/4381798c-3653-4e54-9ffb-32f40c084caa
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### ErrorLogs
+# @name ErrorLogs_GET
+GET {{server}}/dashboard/ErrorLogs
+Authorization: Basic {{username}}:{{password}}
+
+
+### ErrorLogs
+# @name ErrorLogs_POST
+POST {{server}}/dashboard/ErrorLogs
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "16553608-760f-4ccf-b3f5-f6758d1cf339",
+  "errorCode": "errorCode-16553608",
+  "errorMessage": "errorMessage-16553608",
+  "severity": "severity-16553608",
+  "occurredAt": "2017-04-21T00:00:00.000Z",
+  "module": "module-16553608",
+  "requiresAttention": true,
+  "resolvedAt": "2022-04-15T00:00:00.000Z",
+  "resolvedBy": "resolvedBy-16553608"
+}
+
+
+### ErrorLogs
+# @name ErrorLogs_PATCH
+PATCH {{server}}/dashboard/ErrorLogs/16553608-760f-4ccf-b3f5-f6758d1cf339
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "16553608-760f-4ccf-b3f5-f6758d1cf339",
+  "errorCode": "errorCode-16553608",
+  "errorMessage": "errorMessage-16553608",
+  "severity": "severity-16553608",
+  "occurredAt": "2017-04-21T00:00:00.000Z",
+  "module": "module-16553608",
+  "requiresAttention": true,
+  "resolvedAt": "2022-04-15T00:00:00.000Z",
+  "resolvedBy": "resolvedBy-16553608"
+}
+
+
+### ErrorLogs
+# @name ErrorLogs_DELETE
+DELETE {{server}}/dashboard/ErrorLogs/16553608-760f-4ccf-b3f5-f6758d1cf339
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### SecuritySettings
+# @name SecuritySettings_GET
+GET {{server}}/dashboard/SecuritySettings
+Authorization: Basic {{username}}:{{password}}
+
+
+### SecuritySettings
+# @name SecuritySettings_POST
+POST {{server}}/dashboard/SecuritySettings
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "29570935-efbf-438f-ae6a-1b287dcd1b9a",
+  "settingName": "settingName-29570935",
+  "settingValue": "settingValue-29570935",
+  "isActive": false,
+  "lastModified": "2009-07-25T00:00:00.000Z",
+  "modifiedBy": "modifiedBy-29570935"
+}
+
+
+### SecuritySettings
+# @name SecuritySettings_PATCH
+PATCH {{server}}/dashboard/SecuritySettings/29570935-efbf-438f-ae6a-1b287dcd1b9a
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "29570935-efbf-438f-ae6a-1b287dcd1b9a",
+  "settingName": "settingName-29570935",
+  "settingValue": "settingValue-29570935",
+  "isActive": false,
+  "lastModified": "2009-07-25T00:00:00.000Z",
+  "modifiedBy": "modifiedBy-29570935"
+}
+
+
+### SecuritySettings
+# @name SecuritySettings_DELETE
+DELETE {{server}}/dashboard/SecuritySettings/29570935-efbf-438f-ae6a-1b287dcd1b9a
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}

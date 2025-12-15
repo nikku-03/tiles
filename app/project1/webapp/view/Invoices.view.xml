@@ -1,1 +1,100 @@
+<mvc:View
+    controllerName="com.sap.dashboard.controller.Invoices"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
 
+    <Page
+        id="invoicesPage"
+        title="Invoice Management"
+        showNavButton="true"
+        navButtonPress="onNavBack">
+
+        <content>
+            <IconTabBar id="invoiceTabBar" select="onTabSelect">
+                <items>
+                    <IconTabFilter text="Invoice Report" key="report">
+                        <Table
+                            id="invoiceTable"
+                            items="{/InvoiceReport}"
+                            growing="true"
+                            growingThreshold="20"
+                            mode="SingleSelectMaster">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <Title text="Invoices" level="H2"/>
+                                    <ToolbarSpacer/>
+                                    <SearchField
+                                        width="50%"
+                                        search="onSearchInvoice"
+                                        placeholder="Search invoices..."/>
+                                </OverflowToolbar>
+                            </headerToolbar>
+
+                            <columns>
+                                <Column><Text text="Invoice Number" /></Column>
+                                <Column><Text text="PO Number" /></Column>
+                                <Column><Text text="Vendor" /></Column>
+                                <Column><Text text="Invoice Date" /></Column>
+                                <Column><Text text="Due Date" /></Column>
+                                <Column><Text text="Amount" /></Column>
+                                <Column><Text text="Status" /></Column>
+                                <Column><Text text="Verification" /></Column>
+                            </columns>
+
+                            <items>
+                                <ColumnListItem type="Navigation" press="onInvoiceSelect">
+                                    <cells>
+                                        <Text text="{invoiceNumber}" />
+                                        <Text text="{purchaseOrder/poNumber}" />
+                                        <Text text="{vendor/vendorName}" />
+                                        <Text text="{path: 'invoiceDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd/MM/yyyy', strictParsing: false}}" />
+                                        <Text text="{path: 'dueDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'dd/MM/yyyy', strictParsing: false}}" />
+                                        <Text text="{totalAmount} {currency}" />
+                                        <ObjectStatus text="{status}" state="{= ${status} === 'Paid' ? 'Success' : 'Warning'}" />
+                                        <ObjectStatus text="{verificationStatus}" state="{= ${verificationStatus} === 'Verified' ? 'Success' : 'Warning'}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </IconTabFilter>
+
+                    <IconTabFilter text="Invoice Printing" key="printing">
+                        <Table
+                            id="printingTable"
+                            items="{/InvoicePrinting}"
+                            growing="true"
+                            growingThreshold="20">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <Title text="Printing History" level="H2"/>
+                                    <ToolbarSpacer/>
+                                </OverflowToolbar>
+                            </headerToolbar>
+
+                            <columns>
+                                <Column><Text text="Print ID" /></Column>
+                                <Column><Text text="Invoice Number" /></Column>
+                                <Column><Text text="Print Date" /></Column>
+                                <Column><Text text="Printed By" /></Column>
+                                <Column><Text text="Copies" /></Column>
+                            </columns>
+
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{printID}" />
+                                        <Text text="{invoice/invoiceNumber}" />
+                                        <Text text="{path: 'printDate', type: 'sap.ui.model.type.DateTime', formatOptions: {pattern: 'dd/MM/yyyy HH:mm', strictParsing: false}}" />
+                                        <Text text="{printedBy}" />
+                                        <Text text="{copies}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
+    </Page>
+</mvc:View>

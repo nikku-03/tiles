@@ -1,0 +1,85 @@
+@server = http://localhost:4004
+
+###
+POST {{server}}/po/PurchaseOrders
+Content-Type: application/json
+
+{
+  "poNumber": "PO-1001",
+  "vendor_ID": "b3f2d8a1-1c2d-4f91-9c3a-111111111111",
+  "currency": "INR"
+}
+
+###
+GET {{server}}/po/PurchaseOrders
+
+###
+GET {{server}}/po/PurchaseOrders(ID=UUID'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee')
+
+###
+PATCH {{server}}/po/PurchaseOrders(ID=UUID'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee')
+Content-Type: application/json
+
+{
+  "status": "In Progress"
+}
+
+###
+DELETE {{server}}/po/PurchaseOrders(ID=UUID'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee')
+
+###
+POST {{server}}/po/POItems
+Content-Type: application/json
+
+{
+  "purchaseOrder_ID": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  "material_ID": "99999999-8888-7777-6666-555555555555",
+  "quantity": 10,
+  "unitPrice": 250
+}
+
+###
+GET {{server}}/po/POItems
+
+###
+GET {{server}}/po/POItems?$filter=purchaseOrder_ID eq UUID'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee'
+
+###
+PATCH {{server}}/po/POItems(ID=UUID'11111111-2222-3333-4444-555555555555')
+Content-Type: application/json
+
+{
+  "quantity": 15
+}
+
+###
+DELETE {{server}}/po/POItems(ID=UUID'11111111-2222-3333-4444-555555555555')
+
+###
+POST {{server}}/po/approvePO
+Content-Type: application/json
+
+{
+  "poId": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+}
+
+###
+GET {{server}}/po/getTotal(poId=UUID'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee')
+
+###
+GET {{server}}/po/PurchaseOrders?$expand=items
+
+###
+GET {{server}}/po/PurchaseOrders?$select=poNumber,status,approvalStatus
+
+###
+GET {{server}}/po/PurchaseOrders?$filter=approvalStatus eq 'Approved'
+
+###
+GET {{server}}/po/PurchaseOrders?$orderby=createdAt desc
+
+###
+GET {{server}}/po/$metadata
+
+###
+GET {{server}}/po/

@@ -13,7 +13,7 @@
     "description": "{{appDescription}}",
     "dataSources": {
       "mainService": {
-        "uri": "/dashboard/",
+        "uri": "/po/",
         "type": "OData",
         "settings": {
           "odataVersion": "4.0"

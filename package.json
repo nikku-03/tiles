@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A simple CAP project.",
   "dependencies": {
+    "@sap-cloud-sdk/connectivity": "^4.2.0",
+    "@sap-cloud-sdk/http-client": "^4.2.0",
+    "@sap-cloud-sdk/resilience": "^4.2.0",
     "@sap/cds": "^9.5.2",
     "express": "^4.22.1"
   },
@@ -17,10 +20,48 @@
   },
   "scripts": {
     "start": "cds-serve",
-    "watch-project1": "cds watch --open project1/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-project1": "cds watch --open project1/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-dashboard": "cds watch --open dashboard/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "private": true,
   "workspaces": [
     "app/*"
+  ],
+  "cds": {
+    "requires": {
+      "Z301609_ODATA_SRV": {
+        "kind": "odata-v2",
+        "model": "srv/external/Z301609_ODATA_SRV",
+        "credentials": {
+          "destination": "S4H",
+          "path": "/sap/opu/odata/sap/Z301609_ODATA_SRV"
+        },
+        "csrf": true,
+        "csrfInBatch": true,
+        "[production]": {
+          "credentials": {
+            "destination": "S4H",
+            "path": "/sap/opu/odata/sap/Z301609_ODATA_SRV"
+          }
+        }
+      },
+      "Products_ODATA": {
+        "kind": "odata-v2",
+        "model": "srv/external/Products.cds",
+        "credentials": {
+          "destination": "Products",
+          "path": "/"
+        },
+        "csrf": true,
+        "csrfInBatch": true
+      },
+      "Northwind": {
+        "kind": "odata-v2",
+        "model": "srv/external/Northwind"
+      }
+    }
+  },
+  "sapux": [
+    "app/dashboard"
   ]
 }

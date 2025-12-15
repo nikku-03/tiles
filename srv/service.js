@@ -1,161 +1,158 @@
 const cds = require('@sap/cds');
 
-module.exports = cds.service.impl(async function() {
-    
-    const db = this.entities;
-    
-    // Dashboard Summary
-    this.on('READ', 'DashboardSummary', async (req) => {
-        const vendorCount = await SELECT.from(db.VendorMaster).count();
-        const materialCount = await SELECT.from(db.MasterMaterials).count();
-        const poCount = await SELECT.from(db.PurchaseOrders).count();
-        const grCount = await SELECT.from(db.GoodsReceipt).count();
-        const invoiceCount = await SELECT.from(db.InvoiceReport).count();
-        const errorCount = await SELECT.from(db.ErrorLogs).count();
-        
-        return [
-            { metric: 'VendorMaster', count: vendorCount, status: 'Active', additionalInfo: '35 new this week' },
-            { metric: 'MasterMaterials', count: materialCount, status: 'Active', additionalInfo: '98% active' },
-            { metric: 'PurchaseOrders', count: poCount, status: 'Pending', additionalInfo: '3 pending approval' },
-            { metric: 'GoodsReceipt', count: grCount, status: 'Warning', additionalInfo: '4 overdue' },
-            { metric: 'InvoiceReport', count: invoiceCount, status: 'Warning', additionalInfo: '2 need verification' },
-            { metric: 'ErrorLogs', count: errorCount, status: 'Critical', additionalInfo: 'Requires attention' }
-        ];
+module.exports = cds.service.impl(async function () {
+
+  const { PurchaseOrders, POItems } = this.entities;
+
+  this.before('CREATE', PurchaseOrders, req => {
+
+    if (!req.data.poNumber) {
+      req.reject(400, 'PO Number is mandatory');
+    }
+
+    if (!req.data.vendor_ID) {
+      req.reject(400, 'Vendor is mandatory');
+    }
+
+    req.data.status ??= 'Pending';
+    req.data.approvalStatus ??= 'Pending Approval';
+    req.data.createdAt = new Date();
+    req.data.createdBy = req.user.id;
+  });
+
+  this.before('CREATE', POItems, req => {
+
+    if (!req.data.purchaseOrder_ID) {
+      req.reject(400, 'Purchase Order reference is mandatory');
+    }
+
+    if (!req.data.material_ID) {
+      req.reject(400, 'Material is mandatory');
+    }
+
+    const { quantity, unitPrice } = req.data;
+
+    if (!quantity || quantity <= 0) {
+      req.reject(400, 'Quantity must be greater than zero');
+    }
+
+    if (!unitPrice || unitPrice <= 0) {
+      req.reject(400, 'Unit price must be greater than zero');
+    }
+
+    req.data.totalPrice = quantity * unitPrice;
+  });
+
+  this.before('UPDATE', POItems, async req => {
+
+    const tx = cds.tx(req);
+
+    const item = await tx.run(
+      SELECT.one.from(POItems).where({ ID: req.data.ID })
+    );
+
+    const po = await tx.run(
+      SELECT.one.from(PurchaseOrders)
+        .where({ ID: item.purchaseOrder_ID })
+    );
+
+    if (po.approvalStatus === 'Approved') {
+      req.reject(409, 'Cannot update items of an approved PO');
+    }
+  });
+
+  this.after('READ', PurchaseOrders, data => {
+
+    const rows = Array.isArray(data) ? data : [data];
+
+    rows.forEach(po => {
+      po.statusText =
+        po.approvalStatus === 'Approved'
+          ? 'Approved'
+          : 'Pending';
     });
-    
-    // Get Vendor Statistics
-    this.on('getVendorStats', async (req) => {
-        const total = await SELECT.from(db.VendorMaster).count();
-        const active = await SELECT.from(db.VendorMaster).where({ status: 'Active' }).count();
-        
-        const oneWeekAgo = new Date();
-        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-        
-        const newThisWeek = await SELECT.from(db.VendorMaster)
-            .where({ createdAt: { '>': oneWeekAgo } })
-            .count();
-        
-        return {
-            totalVendors: total,
-            newThisWeek: newThisWeek,
-            activeVendors: active
-        };
-    });
-    
-    // Get Material Statistics
-    this.on('getMaterialStats', async (req) => {
-        const total = await SELECT.from(db.MasterMaterials).count();
-        const active = await SELECT.from(db.MasterMaterials).where({ status: 'Active' }).count();
-        const inactive = total - active;
-        const activePercentage = total > 0 ? (active / total) * 100 : 0;
-        
-        return {
-            totalMaterials: total,
-            activePercentage: parseFloat(activePercentage.toFixed(2)),
-            inactiveCount: inactive
-        };
-    });
-    
-    // Get Purchase Order Statistics
-    this.on('getPOStats', async (req) => {
-        const total = await SELECT.from(db.PurchaseOrders).count();
-        const pending = await SELECT.from(db.PurchaseOrders)
-            .where({ approvalStatus: 'Pending Approval' })
-            .count();
-        const approved = await SELECT.from(db.PurchaseOrders)
-            .where({ approvalStatus: 'Approved' })
-            .count();
-        const rejected = await SELECT.from(db.PurchaseOrders)
-            .where({ approvalStatus: 'Rejected' })
-            .count();
-        
-        return {
-            totalOrders: total,
-            pendingApproval: pending,
-            approved: approved,
-            rejected: rejected
-        };
-    });
-    
-    // Approve Order Action
-    this.on('approveOrder', async (req) => {
-        const { orderID } = req.data;
-        
-        await UPDATE(db.PurchaseOrders)
-            .set({ approvalStatus: 'Approved', status: 'In Process' })
-            .where({ ID: orderID });
-        
-        return 'Purchase Order approved successfully';
-    });
-    
-    // Reject Order Action
-    this.on('rejectOrder', async (req) => {
-        const { orderID, reason } = req.data;
-        
-        await UPDATE(db.PurchaseOrders)
-            .set({ approvalStatus: 'Rejected', status: 'Rejected' })
-            .where({ ID: orderID });
-        
-        return `Purchase Order rejected: ${reason}`;
-    });
-    
-    // Verify Invoice Action
-    this.on('verifyInvoice', async (req) => {
-        const { invoiceID } = req.data;
-        
-        await UPDATE(db.InvoiceReport)
-            .set({ verificationStatus: 'Verified', status: 'Approved' })
-            .where({ ID: invoiceID });
-        
-        return 'Invoice verified successfully';
-    });
-    
-    // Resolve Error Action
-    this.on('resolveError', async (req) => {
-        const { errorID } = req.data;
-        
-        await UPDATE(db.ErrorLogs)
-            .set({ 
-                requiresAttention: false, 
-                resolvedAt: new Date(),
-                resolvedBy: req.user.id 
-            })
-            .where({ ID: errorID });
-        
-        return 'Error resolved';
-    });
-    
-    // Auto generate vendor code
-    this.before('CREATE', 'VendorMaster', async (req) => {
-        if (!req.data.vendorCode) {
-            const count = await SELECT.from(db.VendorMaster).count();
-            req.data.vendorCode = `VEN${String(count + 1).padStart(6, '0')}`;
-        }
-        req.data.createdAt = new Date();
-    });
-    
-    // Auto generate material code
-    this.before('CREATE', 'MasterMaterials', async (req) => {
-        if (!req.data.materialCode) {
-            const count = await SELECT.from(db.MasterMaterials).count();
-            req.data.materialCode = `MAT${String(count + 1).padStart(6, '0')}`;
-        }
-        req.data.createdAt = new Date();
-    });
-    
-    // Auto generate PO number
-    this.before('CREATE', 'PurchaseOrders', async (req) => {
-        if (!req.data.poNumber) {
-            const count = await SELECT.from(db.PurchaseOrders).count();
-            req.data.poNumber = `PO${String(count + 1).padStart(8, '0')}`;
-        }
-    });
-    
-    // Auto generate GR number
-    this.before('CREATE', 'GoodsReceipt', async (req) => {
-        if (!req.data.grNumber) {
-            const count = await SELECT.from(db.GoodsReceipt).count();
-            req.data.grNumber = `GR${String(count + 1).padStart(8, '0')}`;
-        }
-    });
+  });
+
+  this.on('CREATE', PurchaseOrders, req =>
+    cds.tx(req).run(req.query)
+  );
+
+  this.on('READ', PurchaseOrders, req =>
+    cds.tx(req).run(req.query)
+  );
+
+  this.on('UPDATE', PurchaseOrders, async req => {
+
+    const tx = cds.tx(req);
+
+    const po = await tx.run(
+      SELECT.one.from(PurchaseOrders).where(req.data)
+    );
+
+    if (po.approvalStatus === 'Approved') {
+      req.reject(409, 'Approved PO cannot be changed');
+    }
+
+    return tx.run(req.query);
+  });
+
+  this.on('DELETE', PurchaseOrders, async req => {
+
+    const tx = cds.tx(req);
+
+    const po = await tx.run(
+      SELECT.one.from(PurchaseOrders).where(req.data)
+    );
+
+    if (po.approvalStatus === 'Approved') {
+      req.reject(409, 'Approved PO cannot be deleted');
+    }
+
+    return tx.run(req.query);
+  });
+
+  this.on('approvePO', async req => {
+
+    if (!req.user.is('Manager')) {
+      req.reject(403, 'Only Manager can approve Purchase Orders');
+    }
+
+    const tx = cds.tx(req);
+
+    const po = await tx.run(
+      SELECT.one.from(PurchaseOrders)
+        .where({ ID: req.data.poId })
+    );
+
+    if (!po) req.reject(404, 'PO not found');
+    if (po.approvalStatus === 'Approved') return 'Already Approved';
+
+    await tx.run(
+      UPDATE(PurchaseOrders)
+        .set({ status: 'Approved', approvalStatus: 'Approved' })
+        .where({ ID: req.data.poId })
+    );
+
+    return 'Approved';
+  });
+
+  this.on('getTotal', async req => {
+
+    const tx = cds.tx(req);
+
+    const items = await tx.run(
+      SELECT.from(POItems)
+        .columns('totalPrice')
+        .where({ purchaseOrder_ID: req.data.poId })
+    );
+
+    return items.reduce((sum, i) => sum + i.totalPrice, 0);
+  });
+
+  this.on('getnorthwind', async(req) => {
+    const request = await fetch('https://services.odata.org/northwind/northwind.svc/Products?$format=json');
+
+    const response = await request.json();
+    return response;
+  })
 });

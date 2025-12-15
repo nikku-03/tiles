@@ -5,7 +5,7 @@
     displayBlock="true">
     <Page
         id="auditPage"
-        title="Audit & Security"
+        title="Audit &amp; Security"
         showNavButton="true"
         navButtonPress="onNavBack">
         <content>

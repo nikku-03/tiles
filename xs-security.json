@@ -1,0 +1,37 @@
+{
+    "xsappname": "my-app-xsuaa",
+    "tenant-mode": "dedicated",
+    "scopes": [
+        {
+            "name": "$XSAPPNAME.AdminRole",
+            "description": "Admin role - can add Manager, Finance, Employee and Departments"
+        },
+        {
+            "name": "$XSAPPNAME.Manager",
+            "description": "Manager Role - To approve and Reject PR"
+        }
+    ],
+    "role-templates": [
+        {
+            "name": "AdminRole",
+            "description": "Admin role with full permissions",
+            "scope-references": [
+                "$XSAPPNAME.AdminRole",
+                "$XSAPPNAME.AuditorRole",
+                "$XSAPPNAME.PoRequestRole",
+                "$XSAPPNAME.BuyerRole "        ]
+        }
+    ],
+    "authorities": [
+        "$ACCEPT_GRANTED_AUTHORITIES"
+    ],
+    "oauth2-configuration": {
+        "token-validity": 900,
+        "refresh-token-validity": 1800,
+        "redirect-uris": [
+            "https://*.cfapps.us10-001.hana.ondemand.com/login/callback"
+        ],
+        "autoapprove": "false"
+    },
+    "xsenableasyncservice": true
+}

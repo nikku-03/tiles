@@ -14,10 +14,10 @@ Content-Type: application/json
 GET {{server}}/po/PurchaseOrders
 
 ###
-GET {{server}}/po/PurchaseOrders(ID=UUID'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee')
+GET {{server}}/po/PurchaseOrders(ID=UUID'29504063-b687-414d-8777-6ac08f8f9012')
 
 ###
-PATCH {{server}}/po/PurchaseOrders(ID=UUID'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee')
+PATCH {{server}}/po/PurchaseOrders(ID="29504063-b687-414d-8777-6ac08f8f9012")
 Content-Type: application/json
 
 {
@@ -75,8 +75,6 @@ GET {{server}}/po/PurchaseOrders?$select=poNumber,status,approvalStatus
 ###
 GET {{server}}/po/PurchaseOrders?$filter=approvalStatus eq 'Approved'
 
-###
-GET {{server}}/po/PurchaseOrders?$orderby=createdAt desc
 
 ###
 GET {{server}}/po/$metadata

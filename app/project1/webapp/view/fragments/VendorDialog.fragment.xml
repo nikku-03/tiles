@@ -1,0 +1,45 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  xmlns:f="sap.ui.layout.form">
+
+  <Dialog
+    id="vendorDialog"
+    title="{dialog>/title}"
+    draggable="true"
+    resizable="true">
+
+    <content>
+      <f:SimpleForm editable="true">
+
+        <Label text="Vendor Code"/>
+        <Input value="{dialog>/vendorCode}"/>
+
+        <Label text="Vendor Name"/>
+        <Input value="{dialog>/vendorName}"/>
+
+        <Label text="Country"/>
+        <Input value="{dialog>/country}"/>
+
+        <Label text="City"/>
+        <Input value="{dialog>/city}"/>
+
+        <Label text="Email"/>
+        <Input value="{dialog>/email}"/>
+
+        <Label text="Phone"/>
+        <Input value="{dialog>/phone}"/>
+
+      </f:SimpleForm>
+    </content>
+
+    <beginButton>
+      <Button text="Save" press="onSave"/>
+    </beginButton>
+
+    <endButton>
+      <Button text="Cancel" press="onCancel"/>
+    </endButton>
+
+  </Dialog>
+</core:FragmentDefinition>

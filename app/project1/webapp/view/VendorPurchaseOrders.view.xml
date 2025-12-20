@@ -1,0 +1,37 @@
+<mvc:View
+  controllerName="com.sap.dashboard.controller.VendorPurchaseOrders"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m">
+
+  <Page
+    title="Purchase Orders"
+    showNavButton="true"
+    navButtonPress="onNavBack">
+
+    <content>
+      <Table
+  id="poTable1"
+  items="{/PurchaseOrders}">
+
+  <columns>
+    <Column><Text text="PO Number"/></Column>
+    <Column><Text text="Order Date"/></Column>
+    <Column><Text text="Status"/></Column>
+    <Column><Text text="Amount"/></Column>
+  </columns>
+
+  <items>
+    <ColumnListItem type="Navigation" press="onPOSelect">
+      <cells>
+        <Text text="{poNumber}"/>
+        <Text text="{orderDate}"/>
+        <Text text="{status}"/>
+        <Text text="{totalAmount}"/>
+      </cells>
+    </ColumnListItem>
+  </items>
+</Table>
+
+    </content>
+  </Page>
+</mvc:View>

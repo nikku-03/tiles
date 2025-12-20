@@ -2,12 +2,15 @@
   "name": "freestyle",
   "version": "1.0.0",
   "description": "A simple CAP project.",
+  "private": true,
   "dependencies": {
+    "@sap/approuter": "^20.8.5",
+    "@sap/cds": "^9.5.2",
     "@sap-cloud-sdk/connectivity": "^4.2.0",
     "@sap-cloud-sdk/http-client": "^4.2.0",
     "@sap-cloud-sdk/resilience": "^4.2.0",
-    "@sap/cds": "^9.5.2",
-    "express": "^4.22.1"
+    "express": "^4.22.1",
+    "@sap/xssec": "^4"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2",
@@ -16,19 +19,50 @@
     "@ui5/cli": "^4.0.38",
     "@ui5/fs": "^4.0.3",
     "@ui5/project": "^4.0.9",
-    "cds-plugin-ui5": "^0.13.0"
+    "cds-plugin-ui5": "^0.13.0",
+    "concurrently": "^9.2.1"
   },
   "scripts": {
-    "start": "cds-serve",
-    "watch-project1": "cds watch --open project1/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "watch-dashboard": "cds watch --open dashboard/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "start": "cds watch",
+    "start:backend": "cds watch",
+    "start:approuter": "node start-approuter.js",
+    "start:all": "concurrently \"npm run start:backend\" \"npm run start:approuter\""
   },
-  "private": true,
   "workspaces": [
     "app/*"
   ],
+  "main": "start-approuter.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikku-03/tiles.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nikku-03/tiles/issues"
+  },
+  "homepage": "https://github.com/nikku-03/tiles#readme",
+  "license": "ISC",
   "cds": {
     "requires": {
+      "auth": {
+        "kind": "mocked",
+        "users": {
+          "nikita@gmail.com": {
+            "password": "n@123",
+            "roles": [
+              "AdminRole"
+            ]
+          },
+          "pranav@gmail.com": {
+            "password": "P@123",
+            "roles": [
+              "ManagerRole"
+            ]
+          }
+        }
+      },
       "Z301609_ODATA_SRV": {
         "kind": "odata-v2",
         "model": "srv/external/Z301609_ODATA_SRV",
@@ -58,6 +92,11 @@
       "Northwind": {
         "kind": "odata-v2",
         "model": "srv/external/Northwind"
+      },
+      "[production]": {
+        "auth": {
+          "kind": "xsuaa"
+        }
       }
     }
   },

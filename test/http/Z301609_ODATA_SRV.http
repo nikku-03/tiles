@@ -1,0 +1,52 @@
+@server=http://localhost:4004
+@username=alice
+@password=
+
+
+### ODATA_VBRKSet
+# @name ODATA_VBRKSet_GET
+GET {{server}}/odata/v4/z301609-odata-srv/ODATA_VBRKSet
+Authorization: Basic {{username}}:{{password}}
+
+
+### ODATA_VBRKSet
+# @name ODATA_VBRKSet_POST
+POST {{server}}/odata/v4/z301609-odata-srv/ODATA_VBRKSet
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "Vbeln": "t-18047268",
+  "Mandt": "268",
+  "Fkart": "7268",
+  "Fktyp": "8",
+  "Vbtyp": "8",
+  "Waerk": "47268",
+  "Vkorg": "7268",
+  "Vtweg": "68"
+}
+
+
+### ODATA_VBRKSet
+# @name ODATA_VBRKSet_PATCH
+PATCH {{server}}/odata/v4/z301609-odata-srv/ODATA_VBRKSet/t-18047268
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "Vbeln": "t-18047268",
+  "Mandt": "268",
+  "Fkart": "7268",
+  "Fktyp": "8",
+  "Vbtyp": "8",
+  "Waerk": "47268",
+  "Vkorg": "7268",
+  "Vtweg": "68"
+}
+
+
+### ODATA_VBRKSet
+# @name ODATA_VBRKSet_DELETE
+DELETE {{server}}/odata/v4/z301609-odata-srv/ODATA_VBRKSet/t-18047268
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}

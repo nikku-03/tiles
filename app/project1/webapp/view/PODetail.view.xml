@@ -1,0 +1,35 @@
+<mvc:View
+  controllerName="com.sap.dashboard.controller.PODetail"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m">
+
+  <Page
+    title="PO Items"
+    showNavButton="true"
+    navButtonPress="onNavBack">
+
+    <content>
+      <Table id="itemsTable">
+
+        <columns>
+          <Column><Text text="Material"/></Column>
+          <Column><Text text="Quantity"/></Column>
+          <Column><Text text="Unit Price"/></Column>
+          <Column><Text text="Total"/></Column>
+        </columns>
+
+        <items>
+          <ColumnListItem id="itemTemplate">
+            <cells>
+              <Text text="{material/materialName}"/>
+              <Text text="{quantity}"/>
+              <Text text="{unitPrice}"/>
+              <Text text="{totalPrice}"/>
+            </cells>
+          </ColumnListItem>
+        </items>
+
+      </Table>
+    </content>
+  </Page>
+</mvc:View>

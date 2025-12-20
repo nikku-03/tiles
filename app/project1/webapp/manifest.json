@@ -97,7 +97,19 @@
         { "pattern": "purchaseOrders", "name": "PurchaseOrders", "target": "PurchaseOrders" },
         { "pattern": "goodsReceipt", "name": "GoodsReceipt", "target": "GoodsReceipt" },
         { "pattern": "invoices", "name": "Invoices", "target": "Invoices" },
-        { "pattern": "audit", "name": "Audit", "target": "Audit" }
+        { "pattern": "audit", "name": "Audit", "target": "Audit" },
+        {
+  "pattern": "vendors/{vendorId}/purchaseOrders",
+  "name": "VendorPOs",
+  "target": "VendorPOs"
+},
+{
+  "pattern": "purchaseOrders/{poId}/items",
+  "name": "PODetail",
+  "target": "PODetail"
+}
+
+
       ],
       "targets": {
         "Dashboard": { "viewName": "Dashboard", "viewLevel": 1 },
@@ -106,7 +118,12 @@
         "PurchaseOrders": { "viewName": "PurchaseOrders", "viewLevel": 2 },
         "GoodsReceipt": { "viewName": "GoodsReceipt", "viewLevel": 2 },
         "Invoices": { "viewName": "Invoices", "viewLevel": 2 },
-        "Audit": { "viewName": "Audit", "viewLevel": 2 }
+        "Audit": { "viewName": "Audit", "viewLevel": 2 },
+        "VendorPOs": {
+  "viewName": "VendorPurchaseOrders",
+  "viewLevel": 3
+}
+
       }
     }
   }

@@ -1,0 +1,9 @@
+@server=http://localhost:4004
+@username=alice
+@password=
+
+
+### ODATA_VBRKSet
+# @name ODATA_VBRKSet_GET
+GET {{server}}/odata/v4/z301609-odata-srvsample/ODATA_VBRKSet
+Authorization: Basic {{username}}:{{password}}

@@ -1,6 +1,4 @@
-/* Enter your custom styles here */
 
-/* Dashboard Tile Styling */
 .tileLayout {
     height: 12rem;
     cursor: pointer;
@@ -26,30 +24,30 @@
     color: white;
 }
 
-/* Dashboard Page Styling */
+
 #dashboardPage {
     background-color: #f5f5f5;
 }
 
-/* Table Header Styling */
+
 .sapMListTblHeaderCell {
     background-color: #667eea;
     color: white;
     font-weight: bold;
 }
 
-/* Panel Styling */
+
 .sapMPanel {
     border-radius: 0.5rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive Grid */
+
 .sapUiRespGrid {
     padding: 1rem;
 }
 
-/* Tab Bar Styling */
+
 .sapMITBHead {
     background-color: #667eea;
 }
@@ -58,7 +56,7 @@
     color: white;
 }
 
-/* Emphasized Button Styling */
+
 .sapMBtn.sapMBtnEmphasized {
     background-color: #667eea;
     border-color: #667eea;
@@ -69,7 +67,7 @@
     border-color: #5568d3;
 }
 
-/* Status Colors */
+
 .sapMObjStatusSuccess {
     color: #2da750;
 }
